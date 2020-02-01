@@ -3,22 +3,27 @@ import React from 'react';
 import classes from './Burger.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
-const burger = ( props ) => {
-    // let transformedIngredients = Object.keys( props.ingredients )
-    //     .map( igKey => {
-    //         return [...Array( props.ingredients[igKey] )].map( ( _, i ) => {
-    //             return <BurgerIngredient key={igKey + i} type={igKey} />;
-    //         } );
-    //     } )
-    //     .reduce((arr, el) => {
-    //         return arr.concat(el)
-    //     }, []);
-    // if (transformedIngredients.length === 0) {
-    //     transformedIngredients = <p>Please start adding ingredients!</p>;
-    // }
+const burger = (props) => {
+
+    let inputIngredients = Object.keys(props.ingredients)
+        .map(ingkey => {
+            return [...Array(props.ingredients[ingkey])].map((_, i) => {
+                return <BurgerIngredient key={ingkey + i} type={ingkey} />
+            })
+        }).reduce((arr, a) => {
+            return arr.concat(a)
+        }, []);
+
+    if (inputIngredients.length <= 0) {
+        inputIngredients = <p>Please add ingredients</p>
+    };
+
     return (
         <div className={classes.Burger}>
             <BurgerIngredient type="bread-top" />
+            {inputIngredients}
+            {/* <BurgerIngredient type="cheese" />
+            <BurgerIngredient type="meat" /> */}
             {/* {transformedIngredients} */}
             <BurgerIngredient type="bread-bottom" />
         </div>
