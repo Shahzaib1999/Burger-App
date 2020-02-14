@@ -20,7 +20,7 @@ const sideDrawer = (props) => {
                 show={props.toggled}
                 onHide={props.toggle}
             />
-            <div className={showSidebar.join(' ')}>
+            <div className={showSidebar.join(' ')} onClick={props.toggle}>
                 <div className={classes.Logo}>
                     <Logo />
                 </div>
